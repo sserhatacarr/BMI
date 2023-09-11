@@ -1,37 +1,42 @@
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class Main {
     public static void main(String[] args) {
 
-        double boy, kilo, BMI;
         // Değişkenler tanımlandı.
-        
-        Scanner inp = new Scanner(System.in);
-        //Scanner sınıfından nesne türetildi.
+        double boy, kilo, BMI;
 
-        System.out.print("Boyunuzu metre cinsinden giriniz : ");
+        // Scanner sınıfından nesne türetildi.
+        Scanner inp = new Scanner(System.in);
+
+        System.out.print("Boyunuzu metre cinsinden giriniz: ");
         boy = inp.nextDouble();
 
-        System.out.print("Kilonuzu kilogram cinsinden giriniz : ");
+        System.out.print("Kilonuzu kilogram cinsinden giriniz: ");
         kilo = inp.nextDouble();
 
         BMI = kilo / (boy * boy);
-        System.out.print("Beden kitle indexiniz : " + BMI);
-        //Beden kitle endeksi hesaplandı.
 
-        if ( BMI < 18.5 ) {
-            System.out.print( "Düşük kilo aralığındasınız.");
-        } else if ( (BMI >= 18.5) && (BMI <= 24.9) ) {
-            System.out.print( "Kilonuz normal aralıkta.");
-        } else if ( (BMI > 24.9) && ( BMI <= 29.9)) {
-            System.out.print( "Fazla kilo aralığındasınız.");
-        } else if ( (BMI > 29.9) && (BMI <= 39.9)) {
-            System.out.print( "Obez kilo aralığındasınız.");
+        // Sonucu virgülden sonra iki basamakla göstermek için DecimalFormat kullanılıyor.
+        // Örneğin şöyle bir 23.148148148148145 BMI yerine 23.15 olarak çıktı veriyor. (1.8m,75 kg)
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        String formattedBMI = df.format(BMI);
+
+        System.out.println("Beden Kitle İndeksiniz: " + formattedBMI);
+
+        // BMI'ye göre denk gelen kilo aralıkları yazdırıldı.
+        if (BMI < 18.5) {
+            System.out.println("Düşük kilo aralığındasınız.");
+        } else if ((BMI >= 18.5) && (BMI <= 24.9)) {
+            System.out.println("Kilonuz normal aralıkta.");
+        } else if ((BMI > 24.9) && (BMI <= 29.9)) {
+            System.out.println("Fazla kilo aralığındasınız.");
+        } else if ((BMI > 29.9) && (BMI <= 39.9)) {
+            System.out.println("Obez kilo aralığındasınız.");
         } else {
-            System.out.print("Morbid Obez kilo aralığındasınız.");
+            System.out.println("Morbid Obez kilo aralığındasınız.");
         }
-        //BMI'ye göre denk gelen kilo aralıkları yazdırıldı.
-
-
     }
 }
